@@ -22,6 +22,9 @@ services:
             # Note that this IP can perhaps be better injected via .env
             - "dockerhost:172.17.0.1"
         tty: true
+        ports:
+            - "8100:8100"
+            - "35729:35729"
 
 ### PHP-FPM Container #######################################
 

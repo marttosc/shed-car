@@ -113,6 +113,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
         nvm use stable && \
         nvm alias stable && \
         npm install -g gulp bower \
+        npm install -g ionic cordova \
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
