@@ -16,8 +16,17 @@ $api = app(Dingo\Api\Routing\Router::class);
 $api->version('v1', function ($api) {
     $api->post('authenticate', 'Shed\Http\Controllers\Auth\AuthenticateController@authenticate');
 
-    $api->group(['middleware' => 'api.auth'], function ($api) {
-        $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
+    $api->group(['protected' => true], function ($api) {
+        $api->group(['middleware' => 'api.auth'], function ($api) {
+            $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
+
+            $api->get('user', function () {
+                $user = app(Dingo\Api\Auth\Auth::class)->user();
+
+                return $user;
+            });
+        });
+
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
     });
 });

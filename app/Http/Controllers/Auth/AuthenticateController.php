@@ -4,6 +4,7 @@ namespace Shed\Http\Controllers\Auth;
 
 use JWTAuth;
 use Illuminate\Http\Request;
+use Dingo\Api\Routing\Helpers;
 use Shed\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -11,6 +12,8 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthenticateController extends Controller
 {
+    use Helpers;
+
     /**
      *  API Login, on success return JWT Auth token
      *
@@ -48,6 +51,7 @@ class AuthenticateController extends Controller
         $this->validate($request, [
             'token' => 'required',
         ]);
+
         JWTAuth::invalidate($request->input('token'));
     }
 
@@ -82,9 +86,11 @@ class AuthenticateController extends Controller
     public function getToken()
     {
         $token = JWTAuth::getToken();
+
         if (!$token) {
             return $this->response->errorMethodNotAllowed('Token not provided');
         }
+
         try {
             $refreshedToken = JWTAuth::refresh($token);
         } catch (JWTException $e) {
