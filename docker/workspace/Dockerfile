@@ -107,13 +107,13 @@ ENV INSTALL_NODE ${INSTALL_NODE}
 ENV NVM_DIR /home/laradock/.nvm
 RUN if [ ${INSTALL_NODE} = true ]; then \
     # Install nvm (A Node Version Manager)
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.3/install.sh | bash && \
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash && \
         . ~/.nvm/nvm.sh && \
         nvm install stable && \
         nvm use stable && \
         nvm alias stable && \
         npm install -g gulp bower \
-        npm install -g ionic cordova \
+        npm install -g ionic@"2.2.0" cordova@"6.0.0" \
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
