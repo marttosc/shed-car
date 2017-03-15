@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,22 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+$api = app(Dingo\Api\Routing\Router::class);
+
+$api->version('v1', function ($api) {
+    $api->post('authenticate', 'Shed\Http\Controllers\Auth\AuthenticateController@authenticate');
+
+    $api->group(['protected' => true], function ($api) {
+        $api->group(['middleware' => 'api.auth'], function ($api) {
+            $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
+
+            $api->get('user', function () {
+                $user = app(Dingo\Api\Auth\Auth::class)->user();
+
+                return $user;
+            });
+        });
+
+        $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
+    });
 });
