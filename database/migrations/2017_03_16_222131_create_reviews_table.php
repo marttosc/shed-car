@@ -3,7 +3,7 @@
 use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * @var \Illuminate\Database\Schema\Builder
@@ -25,14 +25,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        $this->schema->table('users', function (Blueprint $collection) {
+        $this->schema->table('reviews', function (Blueprint $collection) {
             $collection->increments('id');
-            $collection->string('name');
-            $collection->string('email')->index();
-            $collection->string('provider')->index();
-            $collection->string('provider_id')->index();
-            $collection->string('token')->unique();
-            $collection->rememberToken();
+            $collection->index('user_id')->index();
+            $collection->index('mechanist_id')->index();
+            $collection->integer('review')->index();
+            $collection->longText('note');
             $collection->timestamps();
             $collection->softDeletes();
         });
@@ -45,6 +43,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        $this->schema->dropIfExists('users');
+        $this->schema->dropIfExists('reviews');
     }
 }
