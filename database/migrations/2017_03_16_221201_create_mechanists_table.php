@@ -3,7 +3,7 @@
 use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateMechanistsTable extends Migration
 {
     /**
      * @var \Illuminate\Database\Schema\Builder
@@ -25,14 +25,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        $this->schema->table('users', function (Blueprint $collection) {
+        $this->schema->table('mechanists', function (Blueprint $collection) {
             $collection->increments('id');
+            $collection->index('user_id');
+            $collection->boolean('is_owner')->default(false);
             $collection->string('name');
-            $collection->string('email')->index();
-            $collection->string('provider')->index();
-            $collection->string('provider_id')->index();
-            $collection->string('token')->unique();
-            $collection->rememberToken();
+            $collection->string('address')->nullable();
+            $collection->string('number')->nullable();
+            $collection->string('complement')->nullable();
+            $collection->string('zipcode')->nullable();
+            $collection->string('city')->nullable();
+            $collection->string('state')->nullable();
+            $collection->json('location')->nullable();
+            $collection->string('telephone')->nullable();
             $collection->timestamps();
             $collection->softDeletes();
         });
@@ -45,6 +50,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        $this->schema->dropIfExists('users');
+        $this->schema->dropIfExists('mechanists');
     }
 }
