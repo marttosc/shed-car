@@ -12,7 +12,7 @@ class Mechanist extends Model
      * @var array
      */
     protected $fillable = [
-    		'user_id',
+            'user_id',
             'is_owner',
             'name',
             'address',
@@ -22,6 +22,16 @@ class Mechanist extends Model
             'city',
             'state',
             'location',
-            'telephone'
+            'telephone',
         ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_owner' => 'bool',
+        'location' => 'array',
+    ];
 }
