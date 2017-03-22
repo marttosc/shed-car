@@ -11,7 +11,7 @@ class MechanistController extends Controller
     private $service;
 
 
-    public function __construct(MechanistService $service) 
+    public function __construct(MechanistService $service)
     {
         $this->service = $service;
     }
@@ -22,7 +22,7 @@ class MechanistController extends Controller
      */
     public function index()
     {
-        
+        return $this->service->getAllMechanists();
     }
 
     /**

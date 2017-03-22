@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Shed\Repositories;
 
@@ -10,7 +10,7 @@ class MechanistRepository extends BaseRepository
 {
 	public function __construct(Mechanist $mechanist)
 	{
-		$this->mechanist = $mechanist;
+		$this->model = $mechanist;
 	}
 
 	/**
@@ -18,17 +18,17 @@ class MechanistRepository extends BaseRepository
 	 */
 	function model()
     {
-        return 'Shed\Entities\Mechanist';
+        return Shed\Entities\Mechanist::class;
     }
 
     /**
      * Método retorna oficinas paginados
-     */    
+     */
     public function paginateMechanistAll()
     {
-    	
+        return $this->all();
     }
 
-   
+
 
 }
