@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace Shed\Repositories\Eloquent;
@@ -13,7 +13,8 @@ use Illuminate\Container\Container as App;
  * Class Repository
  * @package Shed\Repositories\Eloquent
  */
-abstract class BaseRepository implements RepositoryInterface {
+abstract class BaseRepository implements RepositoryInterface
+{
 
     /**
      * @var App
@@ -45,7 +46,7 @@ abstract class BaseRepository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function all($columns = array('*')) {
+    public function all($columns = ['*']) {
         return $this->model->get($columns);
     }
 
@@ -54,7 +55,7 @@ abstract class BaseRepository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function paginate($perPage = 15, $columns = array('*')) {
+    public function paginate($perPage = 15, $columns = ['*']) {
         return $this->model->paginate($perPage, $columns);
     }
 
@@ -89,18 +90,18 @@ abstract class BaseRepository implements RepositoryInterface {
      * @param array $columns
      * @return mixed
      */
-    public function find($id, $columns = array('*')) {
+    public function find($id, $columns = ['*']) {
         return $this->model->find($id, $columns);
     }
 
-    
+
     /**
      * @param $attribute
      * @param $value
      * @param array $columns
      * @return mixed
      */
-    public function findBy($attribute, $value, $columns = array('*')) {
+    public function findBy($attribute, $value, $columns = ['*']) {
         return $this->model->where($attribute, '=', $value)->first($columns);
     }
 

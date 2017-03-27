@@ -8,17 +8,17 @@ use Shed\Entities\Mechanist;
 
 class MechanistRepository extends BaseRepository
 {
+    /**
+     * Método abstrato retorna o caminho da model de oficinas
+     */
     public function __construct(Mechanist $mechanist)
     {
         $this->mechanist = $mechanist;
     }
 
-    /**
-     * Método abstrato retorna o caminho da model de oficinas
-     */
     function model()
     {
-        return 'Shed\Entities\Mechanist';
+        return Shed\Entities\Mechanist::class;
     }
 
     /**
@@ -26,9 +26,7 @@ class MechanistRepository extends BaseRepository
      */
     public function paginateMechanistAll()
     {
-
+        return $this->all();
     }
-
-
 
 }

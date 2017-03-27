@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Shed\Services;
 
@@ -10,11 +10,14 @@ class MechanistService
 	 * @var MechanistRepository
 	 */
 	private $repository;
-	
+
 	public function __construct(MechanistRepository $repository)
 	{
 		$this->repository = $repository;
 	}
-	
 
+	public function getAllMechanists()
+	{
+		return $this->repository->paginateMechanistAll();
+	}
 }

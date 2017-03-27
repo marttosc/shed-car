@@ -2,7 +2,7 @@
 
 namespace Shed\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class Mechanist extends Model
 {

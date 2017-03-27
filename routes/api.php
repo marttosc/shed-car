@@ -25,7 +25,9 @@ $api->version('v1', function ($api) {
 
                 return $user;
             });
+
         });
+        $api->resource('mechanists', 'Shed\Http\Controllers\MechanistController');
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
     });
