@@ -12,18 +12,18 @@ class Mechanist extends Model
      * @var array
      */
     protected $fillable = [
-            'user_id',
-            'is_owner',
-            'name',
-            'address',
-            'number',
-            'complement',
-            'zipcode',
-            'city',
-            'state',
-            'location',
-            'telephone',
-        ];
+        'user_id',
+        'is_owner',
+        'name',
+        'address',
+        'number',
+        'complement',
+        'zipcode',
+        'city',
+        'state',
+        'location',
+        'telephone',
+    ];
 
     /**
      * The attributes that should be casted to native types.
