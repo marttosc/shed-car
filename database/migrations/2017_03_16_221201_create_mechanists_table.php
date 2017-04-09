@@ -50,6 +50,6 @@ class CreateMechanistsTable extends Migration
      */
     public function down()
     {
-        $this->schema->dropIfExists('mechanists');
+        $this->schema->drop('mechanists');
     }
 }
