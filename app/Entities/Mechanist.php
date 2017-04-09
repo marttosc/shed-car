@@ -2,10 +2,13 @@
 
 namespace Shed\Entities;
 
+use Jenssegers\Mongodb\Eloquent\HybridRelations;
 use Jenssegers\Mongodb\Eloquent\Model;
 
 class Mechanist extends Model
 {
+    use HybridRelations;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -34,4 +37,14 @@ class Mechanist extends Model
         'is_owner' => 'bool',
         'location' => 'array',
     ];
+
+    /**
+     * Get the mechanist's user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, '_id', 'user_id');
+    }
 }
