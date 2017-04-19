@@ -23,8 +23,7 @@
             "database"
         ],
         "psr-4": {
-            "Shed\\": "app/",
-            "Shed\\Repositories\\": "src/"
+            "Shed\\": "app/"
         }
     },
     "autoload-dev": {
