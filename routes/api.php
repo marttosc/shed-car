@@ -27,7 +27,9 @@ $api->version('v1', function ($api) {
             });
 
         });
-        $api->resource('mechanists', 'Shed\Http\Controllers\MechanistController');
+        $api->resource('mechanists', 'Shed\Http\Controllers\MechanistController', [
+            'except' => ['edit'],
+        ]);
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
     });

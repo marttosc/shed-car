@@ -4,10 +4,11 @@ namespace Shed\Entities;
 
 use Jenssegers\Mongodb\Eloquent\HybridRelations;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Mechanist extends Model
 {
-    use HybridRelations;
+    use SoftDeletes, HybridRelations;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,15 @@ class Mechanist extends Model
     ];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at', 'updated_at', 'deleted_at',
+    ];
+
+    /**
      * The attributes that should be casted to native types.
      *
      * @var array
@@ -37,6 +47,8 @@ class Mechanist extends Model
         'is_owner' => 'bool',
         'location' => 'array',
     ];
+
+
 
     /**
      * Get the mechanist's user.
