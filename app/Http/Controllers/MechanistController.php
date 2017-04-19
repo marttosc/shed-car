@@ -8,8 +8,10 @@ use Shed\Services\MechanistService;
 class MechanistController extends Controller
 {
 
-    private $service;
-
+    /**
+     * @var MechanistService
+     */
+    protected $service;
 
     public function __construct(MechanistService $service)
     {
@@ -24,16 +26,6 @@ class MechanistController extends Controller
     public function index()
     {
         return $this->service->getAllMechanists();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**

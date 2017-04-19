@@ -11,16 +11,11 @@ class MechanistRepository extends BaseRepository
     /**
      * @var
      */
-    protected $model = Mechanist::class;
+    protected $model;
 
-    /**
-     * Método abstrato retorna o caminho da model de oficinas
-     */
     public function __construct(Mechanist $mechanist)
     {
-        parent::__construct();
-
-        $this->mechanist = $mechanist;
+        $this->model = $mechanist;
     }
 
     /**
