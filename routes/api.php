@@ -20,16 +20,20 @@ $api->version('v1', function ($api) {
         $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
 
-            $api->get('user', function () {
-                $user = app(Dingo\Api\Auth\Auth::class)->user();
+            $api->group(['prefix' => 'user'], function ($api) {
+                $api->get('/', function () {
+                    $user = app(Dingo\Api\Auth\Auth::class)->user();
 
-                return $user;
+                    return $user;
+                });
             });
 
+            $api->resource('mechanists', Shed\Http\Controllers\MechanistController::class);
+
+            $api->resource('users', Shed\Http\Controllers\UserController::class, [
+                'except' => ['index'],
+            ]);
         });
-        $api->resource('mechanists', 'Shed\Http\Controllers\MechanistController', [
-            'except' => ['edit'],
-        ]);
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
     });
