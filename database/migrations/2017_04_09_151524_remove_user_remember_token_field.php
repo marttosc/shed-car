@@ -3,7 +3,7 @@
 use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class RemoveUserRememberTokenField extends Migration
 {
     /**
      * @var \Illuminate\Database\Schema\Builder
@@ -26,15 +26,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         $this->schema->table('users', function (Blueprint $collection) {
-            $collection->increments('id');
-            $collection->string('name');
-            $collection->string('email')->index();
-            $collection->string('provider')->index();
-            $collection->string('provider_id')->index();
-            $collection->string('token')->unique();
-            $collection->rememberToken();
-            $collection->timestamps();
-            $collection->softDeletes();
+            $collection->dropColumn('remember_token');
         });
     }
 
@@ -45,6 +37,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        $this->schema->drop('users');
+        $this->schema->table('users', function (Blueprint $collection) {
+            $collection->rememberToken()->after('token');
+        });
     }
 }

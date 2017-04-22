@@ -15,10 +15,29 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-	    'user_id',
-	    'mechanist_id',
-	    'review',
-	    'note'
+        'user_id',
+        'mechanist_id',
+        'review',
+        'note',
     ];
 
+    /**
+     * Get the review's user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, '_id', 'user_id');
+    }
+
+    /**
+     * Get the review's mechanist.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function mechanist()
+    {
+        return $this->hasOne(Mechanist::class, '_id', 'mechanist_id');
+    }
 }

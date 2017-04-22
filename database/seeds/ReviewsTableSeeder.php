@@ -13,6 +13,7 @@ class ReviewsTableSeeder extends Seeder
     public function run()
     {
         Review::truncate();
+
         factory(Review::class, 30)->create();
     }
 }

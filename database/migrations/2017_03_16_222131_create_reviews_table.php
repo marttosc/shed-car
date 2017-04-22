@@ -43,6 +43,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        $this->schema->dropIfExists('reviews');
+        $this->schema->drop('reviews');
     }
 }

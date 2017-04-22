@@ -14,6 +14,11 @@ class MechanistsTableSeeder extends Seeder
     public function run()
     {
         Mechanist::truncate();
-        factory(Mechanist::class, 30)->create();
+
+        factory(Mechanist::class, 30)
+            ->create()
+            ->each(function ($u) {
+                $u;
+            });
     }
 }
