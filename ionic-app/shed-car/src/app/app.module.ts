@@ -9,13 +9,15 @@ import { HttpService } from '../providers/http-service';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { UserPage } from '../pages/user/user';
+import { MechanistPage } from '../pages/mechanist/mechanist';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    UserPage
+    MechanistPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { UserPage } from '../pages/user/user';
   entryComponents: [
     MyApp,
     HomePage,
-    UserPage
+    MechanistPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

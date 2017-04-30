@@ -2,18 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
-/**
- * Generated class for the User page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
-  selector: 'page-user',
-  templateUrl: 'user.html',
+  selector: 'page-mechanist',
+  templateUrl: 'mechanist.html',
 })
-export class UserPage {
+export class MechanistPage {
 
   public mechanists: Array<Object>;
 
@@ -25,10 +20,11 @@ export class UserPage {
   }
 
   list() {
-    this.httpService.builder('mechanists')
+  return this.httpService.builder('mechanists')
     .list()
     .then((res) => {
-      this.mechanists = res.data;
+      this.mechanists = res.mechanists;
+      console.log(res);
     });
   }
 
