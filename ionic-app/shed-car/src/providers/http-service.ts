@@ -3,12 +3,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-/*
-  Generated class for the HttpService provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class HttpService {
 
@@ -21,7 +16,7 @@ export class HttpService {
   }
 
   setAccessToken() {
-    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGZjZTY4ODIyMWMzYTAxOGY1N2NmYTIiLCJpc3MiOiJodHRwOlwvXC8xNzIuMTcuMC4xXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5MzIyMDkwNSwiZXhwIjoxNDkzMjI0NTA1LCJuYmYiOjE0OTMyMjA5MDUsImp0aSI6IjU5eVJ1bXRPaVl4dVcxQWgifQ.grltuCwN67RIsdwlz5u0aStOB833JsZIPCiJ-tQZhIM';
+    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGZjZTY4ODIyMWMzYTAxOGY1N2NmYTIiLCJpc3MiOiJodHRwOlwvXC8xNzIuMTcuMC4xXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5MzU2NzIyOSwiZXhwIjoxNDkzNTcwODI5LCJuYmYiOjE0OTM1NjcyMjksImp0aSI6ImVZcjY4eUJ2cTVrSlVkZVoifQ.O_2jgRHEQT2Et3PSlkIDLEb_GBv5mU0ziCBGg35vXVQ';
     this.header = new Headers({'Authorization': 'Bearer '+ token});
   }
 
@@ -31,7 +26,6 @@ export class HttpService {
   }
 
   list() {
-    console.log(this.url);
     return this.http.get(this.url, { headers: this.header })
     .toPromise()
     .then((res) => {
