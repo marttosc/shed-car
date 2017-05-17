@@ -4,20 +4,23 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
-
+//import { RouterModule, Routes } from '@angular/router';
 import { HttpService } from '../providers/http-service';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MechanistPage } from '../pages/mechanist/mechanist';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     MechanistPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { LoginPage } from '../pages/login/login';
     MyApp,
     HomePage,
     MechanistPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

@@ -24,7 +24,6 @@ export class MechanistPage {
     .list()
     .then((res) => {
       this.mechanists = res.mechanists;
-      console.log(res);
     });
   }
 

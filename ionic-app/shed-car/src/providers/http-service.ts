@@ -16,7 +16,7 @@ export class HttpService {
   }
 
   setAccessToken() {
-    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGZjZTY4ODIyMWMzYTAxOGY1N2NmYTIiLCJpc3MiOiJodHRwOlwvXC8xNzIuMTcuMC4xXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5MzU2NzIyOSwiZXhwIjoxNDkzNTcwODI5LCJuYmYiOjE0OTM1NjcyMjksImp0aSI6ImVZcjY4eUJ2cTVrSlVkZVoifQ.O_2jgRHEQT2Et3PSlkIDLEb_GBv5mU0ziCBGg35vXVQ';
+    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGZjZTY4ODIyMWMzYTAxOGY1N2NmYTIiLCJpc3MiOiJodHRwOlwvXC8xNzIuMTcuMC4xXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5NDYxOTcwMSwiZXhwIjoxNDk0NjIzMzAxLCJuYmYiOjE0OTQ2MTk3MDEsImp0aSI6IkpFV0VjR0hscm9GbWV5YmoifQ.wmVrqCVvhdyL-ayEBZhdUmXnFbTyTRCk5MM9V8AwuCI';
     this.header = new Headers({'Authorization': 'Bearer '+ token});
   }
 
@@ -32,5 +32,14 @@ export class HttpService {
       return res.json() || {};
     });
   }
+
+  insert(data: Object) {
+    return this.http.post(this.url, data, { headers: this.header })
+    .toPromise()
+    .then((res) => {
+      return res.json() || {};
+    });
+};
+
 
 }

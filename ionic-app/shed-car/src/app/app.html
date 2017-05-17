@@ -1,8 +1,22 @@
-<ion-menu [content]='menu'>
+<ion-menu [content]="menu">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Pages</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item menuClose>Teste</button>
+      <button ion-item (click)="openPage(MechanistPage)">
+        Oficinas
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Signup
+      </button>
     </ion-list>
   </ion-content>
 </ion-menu>
+
+
+
+
 <ion-nav #menu [root]="rootPage"></ion-nav>

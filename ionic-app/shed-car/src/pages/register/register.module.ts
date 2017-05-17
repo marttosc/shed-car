@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { MechanistPage } from './mechanist';
-
-
+import { RegisterPage } from './register';
 
 @NgModule({
   declarations: [
-    MechanistPage,
+    RegisterPage,
   ],
   imports: [
-    IonicPageModule.forChild(MechanistPage),
+    IonicPageModule.forChild(RegisterPage),
   ],
   exports: [
-    MechanistPage
+    RegisterPage
   ]
 })
-export class MechanistModule {}
+export class RegisterModule {}

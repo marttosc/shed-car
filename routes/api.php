@@ -16,8 +16,8 @@ $api = app(Dingo\Api\Routing\Router::class);
 $api->version('v1', function ($api) {
     $api->post('authenticate', 'Shed\Http\Controllers\Auth\AuthenticateController@authenticate');
 
-//    $api->group(['protected' => true], function ($api) {
-//        $api->group(['middleware' => 'api.auth'], function ($api) {
+   $api->group(['protected' => true], function ($api) {
+      $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
 
             $api->group(['prefix' => 'user'], function ($api) {
@@ -33,8 +33,8 @@ $api->version('v1', function ($api) {
             $api->resource('users', Shed\Http\Controllers\UserController::class, [
                 'except' => ['index'],
             ]);
-//        });
+       });
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
-//    });
+   });
 });
