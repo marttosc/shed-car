@@ -43,19 +43,36 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \Dingo\Api\Http\Request $request
+     * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        return $this->service->findUser($id);
+        $allowed = ['mechanists'];
+
+        $with = explode(',', $request->input('with', '') ?? '');
+
+        $load = array_unique(
+            array_filter($with, function ($item) use ($allowed) {
+                return in_array($item, $allowed);
+            })
+        );
+
+        $user = $this->service->findUser($id);
+
+        if (!empty($load)) {
+            $user->load($load);
+        }
+
+        return $user;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Dingo\Api\Http\Request $request
+     * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -66,7 +83,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

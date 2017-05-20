@@ -35,4 +35,14 @@ class User extends Authenticatable
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at',
     ];
+
+    /**
+     * Get the user's mechanists which it owns.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mechanists()
+    {
+        return $this->hasMany(Mechanist::class, 'user_id', 'id')->where('is_owner', true);
+    }
 }
