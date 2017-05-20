@@ -13,11 +13,11 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input [(ngModel)]="register.email" type="text"></ion-input>
+        <ion-input [(ngModel)]="register.email" type="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Senha</ion-label>
-        <ion-input [(ngModel)]="register.password" type="text"></ion-input>
+        <ion-input [(ngModel)]="register.password" type="password"></ion-input>
       </ion-item>
     </ion-list>
     <button ion-button full (click)="save()">Salvar</button>

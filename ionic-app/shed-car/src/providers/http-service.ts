@@ -11,12 +11,13 @@ export class HttpService {
   header: Headers;
 
   constructor(public http: Http) {
-    console.log('Hello HttpService Provider');
-    this.setAccessToken();
+    let token = localStorage['tokens'] ? JSON.parse(localStorage['tokens']) : {};
+    if (token.token) {
+      this.setAccessToken(token.token);
+    }
   }
 
-  setAccessToken() {
-    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGZjZTY4ODIyMWMzYTAxOGY1N2NmYTIiLCJpc3MiOiJodHRwOlwvXC8xNzIuMTcuMC4xXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ5NDYxOTcwMSwiZXhwIjoxNDk0NjIzMzAxLCJuYmYiOjE0OTQ2MTk3MDEsImp0aSI6IkpFV0VjR0hscm9GbWV5YmoifQ.wmVrqCVvhdyL-ayEBZhdUmXnFbTyTRCk5MM9V8AwuCI';
+  setAccessToken(token: string) {
     this.header = new Headers({'Authorization': 'Bearer '+ token});
   }
 

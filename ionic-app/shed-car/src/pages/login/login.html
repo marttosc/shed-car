@@ -11,16 +11,16 @@
 
   <ion-item>
     <ion-label floating>Email</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input [(ngModel)]="user.email" name="email" type="email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Senha</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input [(ngModel)]="user.password" name="password" type="password"></ion-input>
   </ion-item>
 
 </ion-list>
-<button ion-button full>Entrar</button>
+<button ion-button full (click)="login()">Entrar</button>
 <button ion-button full (click)="createAccount()">Cadastrar</button>
 
 </ion-content>

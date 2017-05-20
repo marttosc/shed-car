@@ -21,10 +21,6 @@ export class RegisterPage {
       this.register = navParams.get('register') || {};
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Register');
-  }
-
   ngOnInit() {
     //this.save();
   }
@@ -42,34 +38,11 @@ export class RegisterPage {
 
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Low battery',
-      subTitle: '10% of battery remaining',
-      buttons: ['Dismiss']
+      title: 'Sucess',
+      subTitle: 'Cadastro efetuado com sucesso!',
     });
     alert.present();
   }
 
-
-
-/*
-createSuccess = false;
-  registerCredentials = { email: '', password: '' };
-
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
-
-  public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
-        this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
-      } else {
-        this.showPopup("Error", "Problem creating account.");
-      }
-    },
-      error => {
-        this.showPopup("Error", error);
-      });
-  }
-*/
 
 }
