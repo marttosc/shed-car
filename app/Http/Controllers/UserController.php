@@ -3,6 +3,7 @@
 namespace Shed\Http\Controllers;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
+use Dingo\Api\Exception\UpdateResourceFailedException;
 use Dingo\Api\Http\Request;
 use Shed\Services\UserService;
 
@@ -77,7 +78,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name'     => 'required|max:255',
+            'password' => 'nullable|min:6|max:255',
+        ];
+
+        $payload = $request->only(['name', 'password']);
+
+        $validator = app('validator')->make($payload, $rules);
+
+        if ($validator->fails()) {
+            throw new UpdateResourceFailedException('Could not update user.', $validator->errors());
+        }
+
+        $updated = $this->service->updateUser($payload, $id);
+
+        $response = array_merge([ 'updated' => (boolean) $updated ], $this->service->findUser($id)->toArray());
+
+        return $response;
     }
 
     /**

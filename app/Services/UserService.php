@@ -37,4 +37,17 @@ class UserService
 
         return $user;
     }
+
+    public function updateUser($data, $id)
+    {
+        if (is_null($data['password'])) {
+            unset($data['password']);
+        }
+
+        if (array_has($data, 'password')) {
+            $data['password'] = \Hash::make($data['password']);
+        }
+
+        return $this->repository->update($data, $id);
+    }
 }
