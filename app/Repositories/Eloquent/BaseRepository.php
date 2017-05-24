@@ -72,7 +72,7 @@ abstract class BaseRepository implements RepositoryInterface
      * @param string $attribute
      * @return mixed
      */
-    public function update(array $data, $id, $attribute = "id")
+    public function update(array $data, $id, $attribute = '_id')
     {
         return $this->model->where($attribute, '=', $id)->update($data);
     }
