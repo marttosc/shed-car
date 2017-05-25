@@ -31,8 +31,16 @@ $api->version('v1', function ($api) {
             $api->resource('mechanists', Shed\Http\Controllers\MechanistController::class);
 
             $api->resource('users', Shed\Http\Controllers\UserController::class, [
-                'except' => ['index'],
+                'except' => ['index', 'destroy'],
             ]);
+
+          $api->resource('states', Shed\Http\Controllers\StateController::class, [
+              'only' => ['index', 'show'],
+          ]);
+
+          $api->resource('states.cities', Shed\Http\Controllers\CityController::class, [
+              'only' => ['index', 'show'],
+          ]);
        });
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');

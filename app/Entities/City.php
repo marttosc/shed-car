@@ -27,15 +27,6 @@ class City extends Model
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        '_id',
-    ];
-
-    /**
      * Get the city state.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
