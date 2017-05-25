@@ -24,6 +24,8 @@ class CityController extends Controller
      */
     public function index($uf)
     {
+        $uf = strtoupper($uf);
+
         return $this->service->getAllCities($uf);
     }
 

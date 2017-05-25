@@ -35,6 +35,8 @@ class StateController extends Controller
      */
     public function show($id)
     {
+        $id = strtoupper($id);
+
         return $this->service->findState($id);
     }
 }
