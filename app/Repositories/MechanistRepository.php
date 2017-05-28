@@ -19,7 +19,7 @@ class MechanistRepository extends BaseRepository
     }
 
     /**
-     * Método retorna oficinas paginados
+     * All registered mechanist.
      */
     public function paginateMechanistAll()
     {

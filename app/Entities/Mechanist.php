@@ -30,6 +30,17 @@ class Mechanist extends Model
     ];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'complement',
+        'zipcode',
+        'location',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
@@ -48,8 +59,6 @@ class Mechanist extends Model
         'location' => 'array',
     ];
 
-
-
     /**
      * Get the mechanist's user.
      *
@@ -57,6 +66,6 @@ class Mechanist extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, '_id', 'user_id');
+        return $this->hasOne(User::class, '_id', 'user_id')->withTrashed();
     }
 }

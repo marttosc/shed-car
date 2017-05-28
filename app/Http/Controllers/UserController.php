@@ -97,15 +97,4 @@ class UserController extends Controller
 
         return $response;
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  mixed $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
