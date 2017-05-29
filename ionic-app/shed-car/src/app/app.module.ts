@@ -12,6 +12,8 @@ import { HomePage } from '../pages/home/home';
 import { MechanistPage } from '../pages/mechanist/mechanist';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { CreateMechanistPage } from '../pages/create-mechanist/create-mechanist';
+import { ReviewPage } from '../pages/review-page/review-page';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     MechanistPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CreateMechanistPage,
+    ReviewPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     MechanistPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    CreateMechanistPage,
+    ReviewPage
   ],
   providers: [
     StatusBar,
