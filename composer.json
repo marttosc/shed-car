@@ -10,7 +10,7 @@
         "dingo/api": "1.0.*@dev",
         "fzaninotto/faker": "^1.6",
         "jenssegers/mongodb": "^3.2",
-        "laravel/framework": "5.4.*",
+        "laravel/framework": "5.4.19",
         "laravel/tinker": "~1.0",
         "ramsey/uuid": "^3.6",
         "tymon/jwt-auth": "0.5.*"
