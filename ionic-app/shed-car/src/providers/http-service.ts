@@ -3,12 +3,15 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+interface RequestOptions {
+  headers?:any;
+}
 
 @Injectable()
 export class HttpService {
 
-  url: string;
-  header: Headers;
+  private url: string;
+  private options: RequestOptions = {};
 
   constructor(public http: Http) {
     let token = localStorage['tokens'] ? JSON.parse(localStorage['tokens']) : {};
@@ -18,7 +21,8 @@ export class HttpService {
   }
 
   setAccessToken(token: string) {
-    this.header = new Headers({'Authorization': 'Bearer '+ token});
+    let header = new Headers({'Authorization': 'Bearer ' + token});
+    this.options.headers = header;
   }
 
   builder(resource) {
@@ -27,15 +31,15 @@ export class HttpService {
   }
 
   list() {
-    return this.http.get(this.url, { headers: this.header })
-    .toPromise()
-    .then((res) => {
-      return res.json() || {};
-    });
+    return this.http.get(this.url, this.options)
+      .toPromise()
+      .then((res) => {
+        return res.json() || {};
+      });
   }
 
   insert(data: Object) {
-    return this.http.post(this.url, data, { headers: this.header })
+    return this.http.post(this.url, data, this.options)
     .toPromise()
     .then((res) => {
       return res.json() || {};

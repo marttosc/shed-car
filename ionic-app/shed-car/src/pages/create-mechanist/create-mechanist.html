@@ -27,9 +27,8 @@
 
     <ion-item>
       <ion-label>Estado</ion-label>
-      <ion-select [(ngModel)]="gender">
-        <ion-option value="f">São Paulo</ion-option>
-        <ion-option value="m">Rio de janeiro</ion-option>
+      <ion-select>
+        <ion-option *ngFor="let item of states" value="{{item.state}}">{{item.state}}</ion-option>
       </ion-select>
     </ion-item>
 
