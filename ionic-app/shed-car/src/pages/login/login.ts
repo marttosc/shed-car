@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { HttpService } from '../../providers/http-service';
 import { HomePage } from '../home/home';
@@ -17,7 +17,9 @@ interface User {
 export class LoginPage {
   public user: User = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+  public states: Array<Object>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService, public alertCtrl:AlertController) {
     this.user = navParams.get('user') || {};
   }
 
@@ -27,20 +29,46 @@ export class LoginPage {
   }
 
   public login(){
-    this.navCtrl.setRoot(HomePage);
+    let auth = {
+      email: this.user.email,
+      password: this.user.password
+    }
 
-    // let auth = {
-    //   email: this.user.email,
-    //   password: this.user.password
-    // }
-    //
-    // this.httpService.builder('authenticate').insert(auth)
-    // .then((res)=>{
-    //    localStorage['tokens'] = JSON.stringify(res);
-    //    this.httpService.setAccessToken(res.token);
-    //    this.navCtrl.setRoot(HomePage);
-    //
-    // });
+    if (typeof(auth) == 'object') {
+        this.presentAlert('sucess');
+    }
+
+
+    if (JSON.stringify(auth).length === 2) {
+        this.presentAlert('error');
+        return;
+    }
+
+
+    this.httpService.builder('authenticate').insert(auth)
+    .then((res)=>{
+       localStorage['tokens'] = JSON.stringify(res);
+       this.httpService.setAccessToken(res.token);
+       this.navCtrl.setRoot(HomePage);
+    });
+
   }
 
+  presentAlert(message:string) {
+    let alert;
+    if (message === 'sucess') {
+      alert = this.alertCtrl.create({
+        title: 'Sucesso',
+        subTitle: 'Login efetuado com sucesso!',
+      });
+    }
+
+    if (message === 'error') {
+      alert = this.alertCtrl.create({
+        title: 'Erro',
+        subTitle: 'Não foi possivel efetuar o login!',
+      });
+      alert.present();
+    }
+  }
 }
