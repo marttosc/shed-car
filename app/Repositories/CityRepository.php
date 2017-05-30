@@ -23,6 +23,10 @@ class CityRepository extends BaseRepository
      */
     public function paginateAllCities($uf)
     {
+        if (is_null($uf)) {
+            return $this->model->orderBy('state', 'asc')->orderBy('city', 'asc')->get();
+        }
+
         return $this->model->where('state', $uf)->orderBy('city', 'asc')->get();
     }
 

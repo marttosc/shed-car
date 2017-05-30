@@ -41,6 +41,10 @@ $api->version('v1', function ($api) {
           $api->resource('states.cities', Shed\Http\Controllers\CityController::class, [
               'only' => ['index', 'show'],
           ]);
+
+          $api->resource('cities', Shed\Http\Controllers\CityController::class, [
+              'only' => ['index', 'show'],
+          ]);
        });
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');

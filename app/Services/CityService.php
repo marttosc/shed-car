@@ -16,7 +16,7 @@ class CityService
         $this->repository = $repository;
     }
 
-    public function getAllCities($uf)
+    public function getAllCities($uf = null)
     {
         return $this->repository->paginateAllCities($uf);
     }
