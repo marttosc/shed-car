@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Nova Oficina</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>É o dono da Oficina?</ion-label>
+      <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nome da Oficina</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Endereço</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Número</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="f">São Paulo</ion-option>
+        <ion-option value="m">Rio de janeiro</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cidade</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="f">São Paulo</ion-option>
+        <ion-option value="m">Niterói</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Telefone</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button>Salvar</button>
+      <button ion-button (click)="popView()">Cancelar</button>
+    </ion-item>
+</ion-list>
+</ion-content>

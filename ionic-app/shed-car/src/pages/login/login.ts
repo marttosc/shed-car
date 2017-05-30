@@ -27,18 +27,20 @@ export class LoginPage {
   }
 
   public login(){
-    let auth = {
-      email: this.user.email,
-      password: this.user.password
-    }
+    this.navCtrl.setRoot(HomePage);
 
-    this.httpService.builder('authenticate').insert(auth)
-    .then((res)=>{
-       localStorage['tokens'] = JSON.stringify(res);
-       this.httpService.setAccessToken(res.token);
-       this.navCtrl.setRoot(HomePage);
-
-    });
+    // let auth = {
+    //   email: this.user.email,
+    //   password: this.user.password
+    // }
+    //
+    // this.httpService.builder('authenticate').insert(auth)
+    // .then((res)=>{
+    //    localStorage['tokens'] = JSON.stringify(res);
+    //    this.httpService.setAccessToken(res.token);
+    //    this.navCtrl.setRoot(HomePage);
+    //
+    // });
   }
 
 }
