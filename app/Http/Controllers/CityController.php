@@ -20,10 +20,15 @@ class CityController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param string $uf
      * @return \Illuminate\Http\Response
      */
-    public function index($uf)
+    public function index($uf = null)
     {
+        if (is_null($uf)) {
+            return $this->service->getAllCities();
+        }
+
         $uf = strtoupper($uf);
 
         return $this->service->getAllCities($uf);
@@ -36,8 +41,12 @@ class CityController extends Controller
      * @param  mixed $city
      * @return \Illuminate\Http\Response
      */
-    public function show($uf, $city)
+    public function show($uf, $city = null)
     {
+        if (is_null($city)) {
+            return $this->service->findCity($uf);
+        }
+
         return $this->service->findCity($city);
     }
 }
