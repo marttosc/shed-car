@@ -34,4 +34,16 @@ export class CreateMechanistPage {
       });
     }
 
+    saveMechanist() {
+      console.log(this.mechanist);
+    // return this.httpService.builder('users')
+    //   .insert(this.register)
+    //   .then((res) => {
+    //     this.register = res;
+    //     if(typeof(this.register) == 'object'){
+    //       this.presentAlert();
+    //     }
+    //   });
+    }
+
 }

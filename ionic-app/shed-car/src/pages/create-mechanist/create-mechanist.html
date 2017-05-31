@@ -7,22 +7,27 @@
   <ion-list>
     <ion-item>
       <ion-label>É o dono da Oficina?</ion-label>
-      <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+      <ion-toggle [(ngModel)]="mechanist.is_owner"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Nome da Oficina</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="mechanist.name" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Endereço</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="mechanist.address" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Número</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="mechanist.number"  type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Complemento</ion-label>
+      <ion-input [(ngModel)]="mechanist.complement"  type="text"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -42,12 +47,11 @@
 
     <ion-item>
       <ion-label floating>Telefone</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <button ion-button>Salvar</button>
-      <button ion-button (click)="popView()">Cancelar</button>
+      <ion-input [(ngModel)]="mechanist.telephone" type="text"></ion-input>
     </ion-item>
 </ion-list>
+
+  <button ion-button medium (click)="saveMechanist()">Salvar</button>
+  <button ion-button medium (click)="popView()">Cancelar</button>
+
 </ion-content>
