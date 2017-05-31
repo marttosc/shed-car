@@ -16,8 +16,8 @@ $api = app(Dingo\Api\Routing\Router::class);
 $api->version('v1', function ($api) {
     $api->post('authenticate', 'Shed\Http\Controllers\Auth\AuthenticateController@authenticate');
 
-   $api->group(['protected' => true], function ($api) {
-      $api->group(['middleware' => 'api.auth'], function ($api) {
+    $api->group(['protected' => true], function ($api) {
+        $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
 
             $api->group(['prefix' => 'user'], function ($api) {
@@ -30,23 +30,27 @@ $api->version('v1', function ($api) {
 
             $api->resource('mechanists', Shed\Http\Controllers\MechanistController::class);
 
+            $api->resource('mechanists.reviews', Shed\Http\Controllers\ReviewController::class, [
+                'except' => ['update'],
+            ]);
+
             $api->resource('users', Shed\Http\Controllers\UserController::class, [
                 'except' => ['index', 'destroy'],
             ]);
 
-          $api->resource('states', Shed\Http\Controllers\StateController::class, [
-              'only' => ['index', 'show'],
-          ]);
+            $api->resource('states', Shed\Http\Controllers\StateController::class, [
+                'only' => ['index', 'show'],
+            ]);
 
-          $api->resource('states.cities', Shed\Http\Controllers\CityController::class, [
-              'only' => ['index', 'show'],
-          ]);
+            $api->resource('states.cities', Shed\Http\Controllers\CityController::class, [
+                'only' => ['index', 'show'],
+            ]);
 
-          $api->resource('cities', Shed\Http\Controllers\CityController::class, [
-              'only' => ['index', 'show'],
-          ]);
-       });
+            $api->resource('cities', Shed\Http\Controllers\CityController::class, [
+                'only' => ['index', 'show'],
+            ]);
+        });
 
         $api->get('token', 'Shed\Http\Controllers\Auth\AuthenticateController@getToken');
-   });
+    });
 });

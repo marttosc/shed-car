@@ -68,4 +68,9 @@ class Mechanist extends Model
     {
         return $this->hasOne(User::class, '_id', 'user_id')->withTrashed();
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

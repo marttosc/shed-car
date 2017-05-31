@@ -2,34 +2,36 @@
 
 namespace Shed\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Dingo\Api\Http\Request;
+use Shed\Services\ReviewService;
 
 class ReviewController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var MechanistService
      */
-    public function index()
+    protected $service;
+
+    public function __construct(ReviewService $service)
     {
-        //
+        $this->service = $service;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
+     * @param mixed $mechanist
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index($mechanist)
     {
-        //
+        return $this->service->getAllReviews($mechanist);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Dingo\Api\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,35 +42,13 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param mixed $mechanist
+     * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($mechanist, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return $this->service->getReview($id);
     }
 
     /**
