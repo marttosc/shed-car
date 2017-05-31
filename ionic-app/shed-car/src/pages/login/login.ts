@@ -50,6 +50,12 @@ export class LoginPage {
        localStorage['tokens'] = JSON.stringify(res);
        this.httpService.setAccessToken(res.token);
        this.navCtrl.setRoot(HomePage);
+    })
+    .catch((error)=>{
+      if (error.status == 401) {
+          this.presentAlert('error');
+          return;
+      }
     });
 
   }
