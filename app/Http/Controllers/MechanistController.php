@@ -39,12 +39,13 @@ class MechanistController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'is_owner' => 'required|boolean',
-            'name'     => 'required|min:10',
-            'address'  => 'required|min:10',
-            'number'   => 'nullable|min:2',
-            'state'    => 'required|exists:states,uf',
-            'city'     => 'required|exists:cities,_id',
+            'is_owner'  => 'nullable|boolean',
+            'name'      => 'required|min:10',
+            'address'   => 'required|min:10',
+            'number'    => 'nullable|min:2',
+            'state'     => 'required|exists:states,uf',
+            'city'      => 'required|exists:cities,_id',
+            'telephone' => 'required|integer',
         ];
 
         $payload = $request->only(array_keys($rules));
@@ -53,6 +54,10 @@ class MechanistController extends Controller
 
         if ($validator->fails()) {
             throw new StoreResourceFailedException('Could not create new mechanist.', $validator->errors());
+        }
+
+        if (!array_key_exists('is_owner', $payload)) {
+            $payload['is_owner'] = false;
         }
 
         $user = $request->user();
@@ -81,12 +86,13 @@ class MechanistController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'is_owner' => 'required|boolean',
-            'name'     => 'required|min:10',
-            'address'  => 'required|min:10',
-            'number'   => 'nullable|min:2',
-            'state'    => 'required|exists:states,uf',
-            'city'     => 'required|exists:cities,_id',
+            'is_owner'  => 'nullable|boolean',
+            'name'      => 'required|min:10',
+            'address'   => 'required|min:10',
+            'number'    => 'nullable|min:2',
+            'state'     => 'required|exists:states,uf',
+            'city'      => 'required|exists:cities,_id',
+            'telephone' => 'required|integer',
         ];
 
         $payload = $request->only(array_keys($rules));
@@ -97,9 +103,13 @@ class MechanistController extends Controller
             throw new UpdateResourceFailedException('Could not update mechanist.', $validator->errors());
         }
 
+        if (!array_key_exists('is_owner', $payload)) {
+            $payload['is_owner'] = false;
+        }
+
         $updated = $this->service->updateMechanist($payload, $id);
 
-        $response = array_merge([ 'updated' => (boolean) $updated ], $this->service->findMechanist($id)->toArray());
+        $response = array_merge(['updated' => (boolean) $updated], $this->service->findMechanist($id)->toArray());
 
         return $response;
     }
