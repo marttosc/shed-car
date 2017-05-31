@@ -32,16 +32,15 @@
 
     <ion-item>
       <ion-label>Estado</ion-label>
-      <ion-select>
-        <ion-option *ngFor="let item of states" value="{{item.state}}">{{item.state}}</ion-option>
+      <ion-select [(ngModel)]="mechanist.state" (ionChange)="getCities($event)">
+        <ion-option  *ngFor="let item of states" value="{{item.uf}}">{{item.state}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Cidade</ion-label>
-      <ion-select [(ngModel)]="gender">
-        <ion-option value="f">São Paulo</ion-option>
-        <ion-option value="m">Niterói</ion-option>
+      <ion-select [(ngModel)]="mechanist.city">
+        <ion-option  *ngFor="let item of cities" value="{{item._id}}">{{item.city}}</ion-option>
       </ion-select>
     </ion-item>
 

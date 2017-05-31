@@ -40,9 +40,9 @@ class MechanistController extends Controller
     {
         $rules = [
             'is_owner'  => 'nullable|boolean',
-            'name'      => 'required|min:10',
-            'address'   => 'required|min:10',
-            'number'    => 'nullable|min:2',
+            'name'      => 'required|min:2',
+            'address'   => 'required|min:2',
+            'number'    => 'nullable|min:1',
             'state'     => 'required|exists:states,uf',
             'city'      => 'required|exists:cities,_id',
             'telephone' => 'required|integer',
