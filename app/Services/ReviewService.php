@@ -30,4 +30,9 @@ class ReviewService
     {
         return $this->repository->create($data);
     }
+
+    public function deleteReview($id)
+    {
+        return $this->repository->delete($id);
+    }
 }

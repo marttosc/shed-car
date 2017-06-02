@@ -72,11 +72,12 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  mixed $mechanist
      * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($mechanist, $id)
     {
-        //
+        return $this->service->deleteReview($id);
     }
 }
