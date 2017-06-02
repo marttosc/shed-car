@@ -2,6 +2,7 @@
 
 namespace Shed\Http\Controllers;
 
+use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Http\Request;
 use Shed\Services\ReviewService;
 
@@ -32,11 +33,28 @@ class ReviewController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Dingo\Api\Http\Request $request
+     * @param mixed $mechanist
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $mechanist)
     {
-        //
+        $rules = [
+            'note'   => 'required|min:5|max:255',
+            'review' => 'required|integer|between:1,5',
+        ];
+
+        $payload = $request->only(array_keys($rules));
+
+        $validator = app('validator')->make($payload, $rules);
+
+        if ($validator->fails()) {
+            throw new StoreResourceFailedException('Could not create new review.', $validator->errors());
+        }
+
+        $payload['user_id'] = $request->user()->id;
+        $payload['mechanist_id'] = $mechanist;
+
+        return $this->service->createReview($payload);
     }
 
     /**
@@ -54,7 +72,7 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

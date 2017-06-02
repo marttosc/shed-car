@@ -25,4 +25,9 @@ class ReviewService
     {
         return $this->repository->find($id, ['*'], ['user']);;
     }
+
+    public function createReview($data)
+    {
+        return $this->repository->create($data);
+    }
 }
