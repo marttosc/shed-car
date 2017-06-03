@@ -46,5 +46,20 @@ export class HttpService {
     });
 };
 
+    refreshToken(token: any) {
+        this.setAccessToken(token);
+
+        return this.http.get(this.builder('token').url, this.options)
+            .toPromise()
+            .then((res) => {
+                let data = res.json();
+
+                localStorage['tokens'] = JSON.stringify(data);
+                this.setAccessToken(data.token);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
 }
