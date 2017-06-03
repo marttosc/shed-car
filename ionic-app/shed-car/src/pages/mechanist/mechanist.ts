@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HttpService } from '../../providers/http-service';
 import { CreateMechanistPage } from '../create-mechanist/create-mechanist';
+import { HomePage } from '../home/home';
+import { ReviewPage } from '../review-page/review-page';
 
 @IonicPage()
 @Component({
@@ -20,6 +22,10 @@ export class MechanistPage {
     this.list();
   }
 
+  back(){
+      this.navCtrl.setRoot(HomePage);
+  }
+
   list() {
   return this.httpService.builder('mechanists')
     .list()
@@ -30,6 +36,10 @@ export class MechanistPage {
 
   createMechanist() {
     this.navCtrl.setRoot(CreateMechanistPage);
+  }
+
+  mechanistSelected(mechanist:Object){
+      this.navCtrl.setRoot(ReviewPage)
   }
 
 
