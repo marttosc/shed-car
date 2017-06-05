@@ -39,7 +39,7 @@ class ReviewController extends Controller
     public function store(Request $request, $mechanist)
     {
         $rules = [
-            'note'   => 'required|min:5|max:255',
+            'note'   => 'nullable|max:255',
             'review' => 'required|integer|between:1,5',
         ];
 
