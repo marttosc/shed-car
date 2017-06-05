@@ -59,6 +59,10 @@ class Mechanist extends Model
         'location' => 'array',
     ];
 
+    protected $appends = [
+        'reviews_avg',
+    ];
+
     /**
      * Get the mechanist's user.
      *
@@ -72,5 +76,15 @@ class Mechanist extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    protected function getReviewsAvgAttribute()
+    {
+        return $this->reviews()
+            ->get()
+            ->map(function($el) {
+                return (integer) $el->review;
+            })
+            ->avg();
     }
 }
