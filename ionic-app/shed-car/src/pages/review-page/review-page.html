@@ -1,28 +1,51 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Minhas Avaliações</ion-title>
+    <ion-title>Deixe sua avaliação</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
-  <ion-item *ngFor="let item of mechanist">
-      <ion-input [(ngModel)]="mechanist.name" type="text"></ion-input>
-    <p>November 5, 1955</p>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nome da Oficina</ion-label>
+      <ion-input [(ngModel)]="mechanist.name" type="text" disabled></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label floating>Endereço</ion-label>
+      <ion-input [(ngModel)]="mechanist.address" type="text" disabled></ion-input>
+    </ion-item>
 
-  <ion-card-content>
-    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
-  </ion-card-content>
+    <ion-item>
+      <ion-label floating>Número</ion-label>
+      <ion-input [(ngModel)]="mechanist.number"  type="text" disabled></ion-input>
+    </ion-item>
 
-  <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>12 Likes</div>
-      </button>
-    </ion-col>
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-input [(ngModel)]="mechanist.state"  type="text" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cidade</ion-label>
+      <ion-input [(ngModel)]="mechanist.city"  type="text" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Telefone</ion-label>
+      <ion-input [(ngModel)]="mechanist.telephone" type="text" disabled></ion-input>
+    </ion-item>
+</ion-list>
+
+<ion-item>
+  <ion-rating
+    [numStars]="5"
+    [readOnly]="false"
+    [value]="3.2"
+    (clicked)="starClicked($event)">
+  </ion-rating>
+</ion-item>
     <ion-col>
       <button ion-button icon-left clear small>
         <ion-icon name="text"></ion-icon>
@@ -34,7 +57,6 @@
         11h ago
       </ion-note>
     </ion-col>
-  </ion-row>
 
 </ion-card>
 

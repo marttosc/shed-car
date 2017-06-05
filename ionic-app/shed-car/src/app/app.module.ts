@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 //import { RouterModule, Routes } from '@angular/router';
 import { HttpService } from '../providers/http-service';
-
+import { IonRating } from '../components/ion-rating/ion-rating';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MechanistPage } from '../pages/mechanist/mechanist';
@@ -24,7 +24,8 @@ import { ReviewPage } from '../pages/review-page/review-page';
     LoginPage,
     RegisterPage,
     CreateMechanistPage,
-    ReviewPage
+    ReviewPage,
+    IonRating
   ],
   imports: [
     BrowserModule,

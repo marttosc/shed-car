@@ -10,22 +10,25 @@ import { MechanistPage } from '../mechanist/mechanist';
 })
 export class ReviewPage {
   public id:string;
-  public mechanist:{};
+  public mechanist: any;
+  public review:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
-    this.id = this.navParams.get('_id');
+    this.mechanist = this.navParams.data;
   }
 
   ngOnInit() {
-    this.view(this.id);
   }
 
+  starClicked(value){
+   console.log("Avaliaram em :", value);
+}
+
   view (id: string) {
-    this.httpService.builder('mechanists')
-      .view(id)
+    return this.httpService.builder('mechanists/'+ this.mechanist._id + "/reviews")
+      .list()
       .then((res) => {
-        this.mechanist = res;
-        console.log(this.mechanist);
+        this.review = res.review
       });
   }
 }
