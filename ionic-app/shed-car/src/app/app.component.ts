@@ -24,9 +24,13 @@ export class MyApp {
       if (localStorage.getItem('tokens') != 'undefined' && localStorage.getItem('tokens') != null) {
           let token = JSON.parse(localStorage.getItem('tokens')).token;
 
-          httpService.refreshToken(token);
-
-          this.rootPage = HomePage;
+          httpService.refreshToken(token)
+            .then((res) => {
+                this.rootPage = HomePage;
+            })
+            .catch((error) => {
+                this.rootPage = LoginPage;
+            });
       }
 
       statusBar.styleDefault();

@@ -66,10 +66,18 @@ view (id: string) {
 
                 localStorage['tokens'] = JSON.stringify(data);
                 this.setAccessToken(data.token);
+
+                return true;
             })
             .catch((error) => {
-                console.error(error);
+                this.clearToken();
+
+                return false;
             });
+    }
+
+    clearToken() {
+        localStorage.removeItem('tokens');
     }
 
 }
