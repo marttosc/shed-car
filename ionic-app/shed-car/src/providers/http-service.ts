@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { LoginPage } from '../pages/login/login';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -18,6 +19,7 @@ export class HttpService {
     if (token.token) {
       this.setAccessToken(token.token);
     }
+
   }
 
   setAccessToken(token: string) {
@@ -44,7 +46,15 @@ export class HttpService {
     .then((res) => {
       return res.json() || {};
     });
-};
+}
+
+view (id: string) {
+    return this.http.get(this.url + '/' + id, this.options)
+      .toPromise()
+      .then((res) => {
+        return res.json() || {};
+      });
+  }
 
     refreshToken(token: any) {
         this.setAccessToken(token);

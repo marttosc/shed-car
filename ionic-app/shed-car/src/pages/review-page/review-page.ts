@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpService} from '../../providers/http-service';
+import { MechanistPage } from '../mechanist/mechanist';
 
 @IonicPage()
 @Component({
@@ -7,12 +9,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'review-page.html',
 })
 export class ReviewPage {
+  public id:string;
+  public mechanist:{};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
+    this.id = this.navParams.get('_id');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReviewPage');
+  ngOnInit() {
+    this.view(this.id);
   }
 
+  view (id: string) {
+    this.httpService.builder('mechanists')
+      .view(id)
+      .then((res) => {
+        this.mechanist = res;
+        console.log(this.mechanist);
+      });
+  }
 }

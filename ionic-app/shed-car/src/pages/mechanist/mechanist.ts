@@ -38,8 +38,8 @@ export class MechanistPage {
     this.navCtrl.setRoot(CreateMechanistPage);
   }
 
-  mechanistSelected(mechanist:Object){
-      this.navCtrl.setRoot(ReviewPage)
+  mechanistSelected(data:Object){
+      this.navCtrl.setRoot(ReviewPage, data);
   }
 
 
