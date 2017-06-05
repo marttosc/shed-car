@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Deixe sua avaliação</ion-title>
+    <ion-title><button class="button-back" (click)="back()"><ion-icon name="ios-arrow-back"></ion-icon></button>Deixe sua avaliação</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -42,21 +42,16 @@
   <ion-rating
     [numStars]="5"
     [readOnly]="false"
-    [value]="3.2"
+    [value]="mechanist.reviews_avg"
     (clicked)="starClicked($event)">
   </ion-rating>
 </ion-item>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
-      </button>
-    </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        11h ago
-      </ion-note>
-    </ion-col>
+<ion-label floating>Comentários</ion-label>
+<ion-item>
+  <ion-textarea>
+  </ion-textarea>
+</ion-item>
+
 
 </ion-card>
 

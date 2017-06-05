@@ -22,7 +22,11 @@ export class ReviewPage {
 
   starClicked(value){
    console.log("Avaliaram em :", value);
-}
+  }
+
+  back(){
+    this.navCtrl.setRoot(MechanistPage);
+  }
 
   view (id: string) {
     return this.httpService.builder('mechanists/'+ this.mechanist._id + "/reviews")
