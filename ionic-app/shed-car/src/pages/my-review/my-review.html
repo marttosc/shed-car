@@ -10,15 +10,11 @@
       <ion-card *ngFor="let item of myReviews">
         <ion-item>
           <ion-label stacked>Nome da Oficina</ion-label>
-          {{item.mechanist.name}}
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Telefone</ion-label>
-          <!-- <ion-input [(ngModel)]="mechanist.telephone" type="text" disabled></ion-input> -->
+          <ion-input [(ngModel)]="item.mechanist.name" type="text" disabled></ion-input>
         </ion-item>
 
         <ion-item>
-          <label>Média de avaliações</label>
+          <label>Minha Avaliação</label>
           <ion-rating
             [numStars]="5"
             [readOnly]="true"
@@ -27,12 +23,16 @@
           </ion-rating>
         </ion-item>
 
+        <ion-item>
+            <label>Meu Comentário</label>
+        </ion-item>
         <ion-list>
-          <label>Comentários</label>
           <ion-item>
             <ion-item text-wrap>{{item.note}}</ion-item>
           </ion-item>
         </ion-list>
+
+        <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="item.created_at"></ion-datetime>
         <button ion-button full (click)="getMechanist()">Ver Oficina</button>
       </ion-card>
   </ion-list>

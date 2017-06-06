@@ -13,11 +13,14 @@ export class MyReviewPage {
   public myReviews:Array<Object>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
-
   }
 
   ngOnInit() {
-    this.list();
+      this.list();
+
+      this.myReviews = JSON.parse(localStorage.getItem('my_reviews'));
+
+      localStorage.removeItem('my_reviews');
   }
 
   back(){
@@ -40,8 +43,11 @@ export class MyReviewPage {
     return this.httpService.builder('user/reviews')
       .list()
       .then((res) => {
-          this.myReviews = res.reviews;
-          console.log(this.myReviews);
+          for (let i = 0; i < res.reviews.length; i++) {
+              res.reviews[i].created_at = new Date(res.reviews[i].created_at);
+          }
+
+          localStorage['my_reviews'] = JSON.stringify(res.reviews);
       });
   }
 
