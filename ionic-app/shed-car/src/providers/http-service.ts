@@ -34,8 +34,19 @@ export class HttpService {
     return this;
   }
 
+  logout(data: string){
+    return this.http.post(this.url, data, this.options)
+    .toPromise()
+    .then((res) => {
+      return res.json() || {};
+    }).catch((error) => {
+        this.clearToken();
+        return false;
+    });
+  }
+
+
   list() {
-    console.log(this.url);
     return this.http.get(this.url, this.options)
       .toPromise()
       .then((res) => {
