@@ -38,7 +38,9 @@ export class ModalReviewPage {
     .insert(this.review)
     .then((res) => {
       this.review = res;
+      this.navCtrl.setRoot(MechanistPage);
     });
+
   }
 
 
