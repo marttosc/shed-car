@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Mechanist::class, 'user_id', 'id')->where('is_owner', true);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'user_id', 'id')->orderBy('created_at', 'desc');
+    }
 }
