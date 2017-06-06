@@ -15,6 +15,7 @@ import { RegisterPage } from '../pages/register/register';
 import { CreateMechanistPage } from '../pages/create-mechanist/create-mechanist';
 import { ReviewPage } from '../pages/review-page/review-page';
 import { ModalReviewPage } from '../pages/modal-review/modal-review';
+import { MyReviewPage } from '../pages/my-review/my-review';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ModalReviewPage } from '../pages/modal-review/modal-review';
     CreateMechanistPage,
     ReviewPage,
     IonRating,
-    ModalReviewPage
+    ModalReviewPage,
+    MyReviewPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { ModalReviewPage } from '../pages/modal-review/modal-review';
     RegisterPage,
     CreateMechanistPage,
     ReviewPage,
-    ModalReviewPage
+    ModalReviewPage,
+    MyReviewPage
   ],
   providers: [
     StatusBar,

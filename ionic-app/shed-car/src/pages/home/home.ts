@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MechanistPage } from '../mechanist/mechanist';
-import { ReviewPage } from '../review-page/review-page';
+import { MyReviewPage } from '../my-review/my-review';
 
 @Component({
   selector: 'page-home',
@@ -18,7 +18,7 @@ export class HomePage {
   }
 
   myReviews(){
-      this.navCtrl.setRoot(ReviewPage);
+      this.navCtrl.setRoot(MyReviewPage);
     }
 
 }
