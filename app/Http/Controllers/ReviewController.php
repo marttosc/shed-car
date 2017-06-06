@@ -4,6 +4,7 @@ namespace Shed\Http\Controllers;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Http\Request;
+use Shed\Services\MechanistService;
 use Shed\Services\ReviewService;
 
 class ReviewController extends Controller
@@ -13,9 +14,12 @@ class ReviewController extends Controller
      */
     protected $service;
 
-    public function __construct(ReviewService $service)
+    protected $mechanist;
+
+    public function __construct(ReviewService $service, MechanistService $mechanist)
     {
         $this->service = $service;
+        $this->mechanist = $mechanist;
     }
 
     /**
@@ -49,6 +53,12 @@ class ReviewController extends Controller
 
         if ($validator->fails()) {
             throw new StoreResourceFailedException('Could not create new review.', $validator->errors());
+        }
+
+        $mechanist_obj = $this->mechanist->findMechanist($mechanist);
+
+        if ($request->user()->id == $mechanist_obj->user_id) {
+            throw new StoreResourceFailedException('Owner cannot create new review.', ['error' => true]);
         }
 
         $payload['user_id'] = $request->user()->id;
