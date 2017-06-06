@@ -31,9 +31,10 @@
             <ion-item text-wrap>{{item.note}}</ion-item>
           </ion-item>
         </ion-list>
-
-        <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="item.created_at"></ion-datetime>
-        <button ion-button full (click)="getMechanist()">Ver Oficina</button>
+        <ion-item>
+            <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="item.created_at"></ion-datetime>
+        </ion-item>
+        <button ion-button full (click)="getMechanist(item)">Ver Oficina</button>
       </ion-card>
   </ion-list>
 </ion-content>
