@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { HttpService } from '../../providers/http-service';
+import { ReviewPage } from '../review-page/review-page';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import { HttpService } from '../../providers/http-service';
 export class MyReviewPage {
 
   public myReviews:Array<Object>;
+  public mechanist:Object;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
 
@@ -24,12 +26,13 @@ export class MyReviewPage {
       this.navCtrl.setRoot(HomePage);
   }
 
-  getMechanist(){
-    // return this.httpService.builder('mechanists/'+ this.mechanist._id + "/reviews")
-    //   .list()
-    //   .then((res) => {
-    //     this.reviews = res.reviews;
-    //   });
+  getMechanist(data:Object){
+    this.mechanist = data['mechanist'];
+    return this.httpService.builder('mechanists/'+ data['mechanist']._id + "/reviews")
+      .list()
+      .then((res) => {
+        this.navCtrl.setRoot(ReviewPage, this.mechanist);
+      });
   }
 
   starClicked(value){
@@ -41,7 +44,6 @@ export class MyReviewPage {
       .list()
       .then((res) => {
           this.myReviews = res.reviews;
-          console.log(this.myReviews);
       });
   }
 

@@ -20,7 +20,9 @@ export class ReviewPage {
   }
 
   ngOnInit() {
-    this.list();
+    if (this.mechanist==false) {
+      this.list();
+    }
   }
 
   back(){
