@@ -38,21 +38,20 @@
     </ion-item>
 </ion-list>
 
-<ion-item>
-  <ion-rating
-    [numStars]="5"
-    [readOnly]="false"
-    [value]="mechanist.reviews_avg"
-    (clicked)="starClicked($event)">
-  </ion-rating>
-</ion-item>
-<ion-label floating>Comentários</ion-label>
-<ion-item>
-  <ion-textarea>
-  </ion-textarea>
-</ion-item>
+  <ion-item>
+    <label>Média de avaliações</label>
+    <ion-rating
+      [numStars]="5"
+      [readOnly]="true"
+      [value]="mechanist.reviews_avg"
+      (clicked)="starClicked($event)">
+    </ion-rating>
+  </ion-item>
 
-
+  <ion-item *ngFor="let item of reviews">
+    <label>Comentários</label>
+    <ion-item text-wrap>{{item.note}}</ion-item>
+  </ion-item>
 </ion-card>
 
 </ion-content>

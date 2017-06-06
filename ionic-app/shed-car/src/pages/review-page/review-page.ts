@@ -11,13 +11,14 @@ import { MechanistPage } from '../mechanist/mechanist';
 export class ReviewPage {
   public id:string;
   public mechanist: any;
-  public review:any;
+  public reviews:Array<Object>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService) {
     this.mechanist = this.navParams.data;
   }
 
   ngOnInit() {
+    this.list();
   }
 
   starClicked(value){
@@ -28,11 +29,11 @@ export class ReviewPage {
     this.navCtrl.setRoot(MechanistPage);
   }
 
-  view (id: string) {
+  list () {
     return this.httpService.builder('mechanists/'+ this.mechanist._id + "/reviews")
       .list()
       .then((res) => {
-        this.review = res.review
+        this.reviews = res.reviews;
       });
   }
 }
