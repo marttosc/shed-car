@@ -28,6 +28,7 @@ export class HttpService {
   }
 
   builder(resource) {
+    // this.url = 'http://docker.app/api/' + resource;
     this.url = 'https://shedcar.herokuapp.com/api/' + resource;
     // this.url = 'http://172.17.0.1/api/' + resource;
     return this;
