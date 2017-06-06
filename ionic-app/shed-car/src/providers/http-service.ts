@@ -33,6 +33,7 @@ export class HttpService {
   }
 
   list() {
+    console.log(this.url);
     return this.http.get(this.url, this.options)
       .toPromise()
       .then((res) => {

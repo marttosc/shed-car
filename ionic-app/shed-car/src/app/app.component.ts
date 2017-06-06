@@ -8,6 +8,8 @@ import { LoginPage } from '../pages/login/login';
 import { CreateMechanistPage } from '../pages/create-mechanist/create-mechanist';
 import { ReviewPage } from '../pages/review-page/review-page';
 import { HttpService } from '../providers/http-service';
+import { IonRating } from '../components/ion-rating/ion-rating';
+
 
 @Component({
   templateUrl: 'app.html',
