@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Cadastre sua Avaliação</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <label>Média de avaliações</label>
+      <ion-rating
+        [numStars]="5"
+        [readOnly]="false"
+        [value]="0"
+        (clicked)="starClicked($event)">
+      </ion-rating>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Comentários</ion-label>
+        <ion-textarea [(ngModel)]="review.note" name="note"></ion-textarea>
+      </ion-item>
+
+  </ion-list>
+  <button ion-button full color="primary" (click)="save()">Salvar</button>
+
+</ion-content>

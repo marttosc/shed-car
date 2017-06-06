@@ -28,7 +28,7 @@ export class HttpService {
   }
 
   builder(resource) {
-    this.url = 'http://172.17.0.1/api/' + resource;
+    this.url = 'https://shedcar.herokuapp.com/api/' + resource;
     return this;
   }
 
@@ -79,6 +79,14 @@ view (id: string) {
 
     clearToken() {
         localStorage.removeItem('tokens');
+    }
+
+    getUser(){
+      return this.http.get(this.url + this.options)
+        .toPromise()
+        .then((res) => {
+          return res.json() || {};
+        });
     }
 
 }
