@@ -21,6 +21,10 @@ class Review extends Model
         'note',
     ];
 
+    protected $casts = [
+        'review' => 'integer',
+    ];
+
     /**
      * Get the review's user.
      *

@@ -26,6 +26,12 @@ $api->version('v1', function ($api) {
 
                     return $user;
                 });
+
+                $api->get('reviews', function () {
+                    $user = app(Dingo\Api\Auth\Auth::class)->user();
+
+                    return $user->reviews->load('mechanist');
+                });
             });
 
             $api->resource('mechanists', Shed\Http\Controllers\MechanistController::class);
