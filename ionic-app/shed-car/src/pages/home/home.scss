@@ -1,6 +1,18 @@
 page-home {
 }
 
+.toolbar-title  {
+  padding-top: 10px !important;
+}
+
+.button-md:hover:not(.disable-hover) {
+    background-color: #eaa822 !important;
+}
+
+.toolbar-ios ion-title {
+  padding: 0 !important;
+}
+
 .buttomSair {
   margin-left: 60% !important;
   background-color: #EAA822;

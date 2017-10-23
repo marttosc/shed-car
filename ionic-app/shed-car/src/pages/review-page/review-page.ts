@@ -33,7 +33,8 @@ export class ReviewPage {
     return this.httpService.builder('mechanists/'+ this.mechanist._id + "/reviews")
       .list()
       .then((res) => {
-        this.reviews = res.reviews;
+        console.log(res.reviews);
+        this.reviews = res.data.reviews;
       });
   }
 
@@ -42,7 +43,7 @@ export class ReviewPage {
       .list()
       .then((res) => {
         data = res;
-        let modal = this.modalCtrl.create(ModalReviewPage, [data, this.mechanist._id]);
+        let modal = this.modalCtrl.create(ModalReviewPage, [data, this.mechanist]);
         modal.present();
       });
 

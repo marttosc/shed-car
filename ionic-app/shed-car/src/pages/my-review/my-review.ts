@@ -50,7 +50,7 @@ export class MyReviewPage {
               res.reviews[i].created_at = new Date(res.reviews[i].created_at);
           }
 
-          localStorage['my_reviews'] = JSON.stringify(res.reviews);
+          localStorage['my_reviews'] = JSON.stringify(res.reviews); //res.data.reviews
       });
   }
 

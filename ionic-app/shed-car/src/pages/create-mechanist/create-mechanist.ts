@@ -36,7 +36,7 @@ export class CreateMechanistPage {
      this.httpService.builder('states').list()
       .then((res) => {
         localStorage['states'] = JSON.stringify(res);
-        this.states = res.states;
+        this.states = res.data.states;
       });
     }
 
@@ -44,7 +44,7 @@ export class CreateMechanistPage {
       this.httpService.builder('states/'+ state +'/cities').list()
        .then((res) => {
          localStorage['cities'] = JSON.stringify(res);
-         this.cities = res.cities;
+         this.cities = res.data.cities;
        });
     }
 

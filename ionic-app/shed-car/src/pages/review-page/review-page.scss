@@ -8,6 +8,7 @@ page-review-page {
 
 .button-back, .button-plus {
   background-color: #EAA822;
+  margin-right: 15px;
 }
 
 .item-input .label-md, .item-select .label-md, .item-datetime .label-md{
@@ -16,4 +17,8 @@ page-review-page {
 
 .text-input[disabled]{
   opacity: 1;
+}
+
+.esp {
+  padding-left: 16px;
 }

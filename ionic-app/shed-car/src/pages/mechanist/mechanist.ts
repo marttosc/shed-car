@@ -30,7 +30,7 @@ export class MechanistPage {
   return this.httpService.builder('mechanists')
     .list()
     .then((res) => {
-      this.mechanists = res.mechanists;
+      this.mechanists = res.data.mechanists;
     });
   }
 

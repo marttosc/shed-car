@@ -30,17 +30,50 @@ export class ModalReviewPage {
     this.navCtrl.setRoot(MechanistPage);
   }
 
+
   save() {
     this.review.review = this.value;
-    this.review.user_id = this.user.user._id;
 
-  return this.httpService.builder('mechanists/' + this.mechanist + '/reviews')
-    .insert(this.review)
+    if(typeof(this.review.review)=="undefined" || this.review.review == null){
+      this.presentAlert('error');
+      this.close();
+    }
+
+  return this.httpService.builder('mechanists/' + this.mechanist._id + '/reviews')
+    .insertReview(this.review)
     .then((res) => {
       this.review = res;
-      this.navCtrl.setRoot(MechanistPage);
+      console.log(res);
+
+      if(typeof(this.review) == 'object'){
+        this.presentAlert('success');
+      }
+    }).catch((error)=>{
+      if (error.status_code == 422) {
+          this.presentAlert('error');
+      }
+      this.close();
     });
 
+  }
+
+  presentAlert(message:string) {
+    let alert;
+    if (message === 'success') {
+      alert = this.alertCtrl.create({
+        title: 'Sucesso',
+        subTitle: 'Avaliação cadastrada com sucesso!',
+      });
+    }
+
+    if (message === 'error') {
+      alert = this.alertCtrl.create({
+        title: 'Erro',
+        subTitle: 'Não foi possivel cadastrar sua avaliação, verifique se você não é dono desta oficina!',
+      });
+    }
+
+    alert.present();
   }
 
 

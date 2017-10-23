@@ -29,8 +29,8 @@ export class HttpService {
 
   builder(resource) {
     // this.url = 'http://docker.app/api/' + resource;
-    this.url = 'https://shedcar.herokuapp.com/api/' + resource;
-    // this.url = 'http://172.17.0.1/api/' + resource;
+    //this.url = 'https://shedcar.herokuapp.com/api/' + resource;
+     this.url = 'http://172.17.0.1/api/' + resource;
     return this;
   }
 
@@ -59,7 +59,21 @@ export class HttpService {
     .toPromise()
     .then((res) => {
       return res.json() || {};
+    }).catch((error) => {
+      console.log(error.json().status_code);
+        return false;
     });
+}
+
+insertReview(data: Object) {
+  return this.http.post(this.url, data, this.options)
+  .toPromise()
+  .then((res) => {
+    return res.json() || {};
+  }).catch((error) => {
+      throw error.json();
+      // return error.json() || {};
+  });
 }
 
 view (id: string) {
