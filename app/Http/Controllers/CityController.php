@@ -31,7 +31,11 @@ class CityController extends Controller
 
         $uf = strtoupper($uf);
 
-        return $this->service->getAllCities($uf);
+        return [
+            'data' => [
+                'cities' => $this->service->getAllCities($uf),
+            ],
+        ];
     }
 
     /**
@@ -47,6 +51,10 @@ class CityController extends Controller
             return $this->service->findCity($uf);
         }
 
-        return $this->service->findCity($city);
+        return [
+            'data' => [
+                'city' => $this->service->findCity($city),
+            ],
+        ];
     }
 }

@@ -25,10 +25,11 @@ export class RegisterPage {
    }
 
   save() {
-  return this.httpService.builder('users')
+  return this.httpService.builder('register')
     .insert(this.register)
     .then((res) => {
       this.register = res;
+      this.navCtrl.setRoot(LoginPage);
       if(typeof(this.register) == 'object'){
         this.presentAlert('sucess');
       }

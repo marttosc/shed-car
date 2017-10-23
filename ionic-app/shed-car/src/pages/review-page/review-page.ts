@@ -12,7 +12,7 @@ import { ModalReviewPage } from '../modal-review/modal-review';
 export class ReviewPage {
   public id:string;
   public mechanist: any;
-  public reviews:Array<Object>;
+  public reviews:Array<Object> = [];
   public user:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public httpService: HttpService, public modalCtrl:ModalController) {
@@ -20,8 +20,14 @@ export class ReviewPage {
   }
 
   ngOnInit() {
-    if (this.mechanist==false) {
-      this.list();
+    this.list();
+
+    if (this.reviews.length == 0) {
+        let ls = localStorage.getItem('mechanist_reviews');
+
+        if (ls != 'undefined' && ls != null) {
+            this.reviews = JSON.parse(ls);
+        }
     }
   }
 
@@ -35,6 +41,7 @@ export class ReviewPage {
       .then((res) => {
         console.log(res.reviews);
         this.reviews = res.data.reviews;
+        localStorage['mechanist_reviews'] = JSON.stringify(this.reviews);
       });
   }
 

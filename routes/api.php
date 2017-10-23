@@ -16,6 +16,10 @@ $api = app(Dingo\Api\Routing\Router::class);
 $api->version('v1', function ($api) {
     $api->post('authenticate', 'Shed\Http\Controllers\Auth\AuthenticateController@authenticate');
 
+    $api->resource('register', Shed\Http\Controllers\UserController::class, [
+        'only' => ['store'],
+    ]);
+
     $api->group(['protected' => true], function ($api) {
         $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->post('logout', 'Shed\Http\Controllers\Auth\AuthenticateController@logout');
@@ -24,13 +28,21 @@ $api->version('v1', function ($api) {
                 $api->get('/', function () {
                     $user = app(Dingo\Api\Auth\Auth::class)->user();
 
-                    return $user;
+                    return [
+                        'data' => [
+                            'user' => $user,
+                        ],
+                    ];
                 });
 
                 $api->get('reviews', function () {
                     $user = app(Dingo\Api\Auth\Auth::class)->user();
 
-                    return $user->reviews->load('mechanist');
+                    return [
+                        'data' => [
+                            'reviews' => $user->reviews->load('mechanist'),
+                        ],
+                    ];
                 });
             });
 
@@ -41,7 +53,7 @@ $api->version('v1', function ($api) {
             ]);
 
             $api->resource('users', Shed\Http\Controllers\UserController::class, [
-                'except' => ['index', 'destroy'],
+                'except' => ['index', 'destroy', 'store'],
             ]);
 
             $api->resource('states', Shed\Http\Controllers\StateController::class, [

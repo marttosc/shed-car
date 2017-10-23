@@ -27,7 +27,11 @@ class MechanistController extends Controller
      */
     public function index()
     {
-        return $this->service->getAllMechanists();
+        return [
+            'data' => [
+                'mechanists' => $this->service->getAllMechanists(),
+            ],
+        ];
     }
 
     /**
@@ -62,7 +66,11 @@ class MechanistController extends Controller
 
         $user = $request->user();
 
-        return $this->service->createMechanist($payload, $user);
+        return [
+            'data' => [
+                'mechanist' => $this->service->createMechanist($payload, $user),
+            ],
+        ];
     }
 
     /**
@@ -73,7 +81,19 @@ class MechanistController extends Controller
      */
     public function show($id)
     {
-        return $this->service->findMechanist($id);
+        $data = $this->service->findMechanist($id);
+
+        if (is_null($data)) {
+            return response([
+                'error' => 'not_found',
+            ], 404);
+        }
+
+        return [
+            'data' => [
+                'mechanist' => $data,
+            ],
+        ];
     }
 
     /**
@@ -109,9 +129,12 @@ class MechanistController extends Controller
 
         $updated = $this->service->updateMechanist($payload, $id);
 
-        $response = array_merge(['updated' => (boolean) $updated], $this->service->findMechanist($id)->toArray());
-
-        return $response;
+        return [
+            'data' => [
+                'updated' => (boolean) $updated,
+                'mechanist' => $this->service->findMechanist($id)->toArray(),
+            ]
+        ];
     }
 
     /**

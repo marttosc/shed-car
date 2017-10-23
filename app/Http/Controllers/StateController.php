@@ -24,7 +24,11 @@ class StateController extends Controller
      */
     public function index()
     {
-        return $this->service->getAllStates();
+        return [
+            'data' => [
+                'states' => $this->service->getAllStates(),
+            ],
+        ];
     }
 
     /**
@@ -37,6 +41,10 @@ class StateController extends Controller
     {
         $id = strtoupper($id);
 
-        return $this->service->findState($id);
+        return [
+            'data' => [
+                'state' => $this->service->findState($id),
+            ],
+        ];
     }
 }

@@ -38,7 +38,11 @@ class UserController extends Controller
             throw new StoreResourceFailedException('Could not create new user.', $validator->errors());
         }
 
-        return $this->service->createUser($payload);
+        return [
+            'data' => [
+                'user' => $this->service->createUser($payload),
+            ],
+        ];
     }
 
     /**
@@ -66,7 +70,11 @@ class UserController extends Controller
             $user->load($load);
         }
 
-        return $user;
+        return [
+            'data' => [
+                'user' => $user,
+            ],
+        ];
     }
 
     /**
