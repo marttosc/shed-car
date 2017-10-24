@@ -28,13 +28,21 @@ $api->version('v1', function ($api) {
                 $api->get('/', function () {
                     $user = app(Dingo\Api\Auth\Auth::class)->user();
 
-                    return $user;
+                    return [
+                        'data' => [
+                            'user' => $user,
+                        ],
+                    ];
                 });
 
                 $api->get('reviews', function () {
                     $user = app(Dingo\Api\Auth\Auth::class)->user();
 
-                    return $user->reviews->load('mechanist');
+                    return [
+                        'data' => [
+                            'reviews' => $user->reviews->load('mechanist'),
+                        ],
+                    ];
                 });
             });
 

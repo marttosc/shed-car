@@ -30,7 +30,11 @@ class ReviewController extends Controller
      */
     public function index($mechanist)
     {
-        return $this->service->getAllReviews($mechanist);
+        return [
+            'data' => [
+                'reviews' => $this->service->getAllReviews($mechanist),
+            ],
+        ];
     }
 
     /**
@@ -57,14 +61,18 @@ class ReviewController extends Controller
 
         $mechanist_obj = $this->mechanist->findMechanist($mechanist);
 
-        if ($request->user()->id == $mechanist_obj->user_id) {
-            throw new StoreResourceFailedException('Owner cannot create new review.', ['error' => true]);
+        if ($request->user()->id == $mechanist_obj->user_id && $mechanist_obj->is_owner == true) {
+            throw new StoreResourceFailedException('Owner cannot create new review.', $validator->errors());
         }
 
         $payload['user_id'] = $request->user()->id;
         $payload['mechanist_id'] = $mechanist;
 
-        return $this->service->createReview($payload);
+        return [
+            'data' => [
+                'review' => $this->service->createReview($payload),
+            ],
+        ];
     }
 
     /**
@@ -76,7 +84,11 @@ class ReviewController extends Controller
      */
     public function show($mechanist, $id)
     {
-        return $this->service->getReview($id);
+        return [
+            'data' => [
+                'review' => $this->service->getReview($id),
+            ],
+        ];
     }
 
     /**
