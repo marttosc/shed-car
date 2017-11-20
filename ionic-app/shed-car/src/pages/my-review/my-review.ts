@@ -21,6 +21,7 @@ export class MyReviewPage {
       this.list();
 
       this.myReviews = JSON.parse(localStorage.getItem('my_reviews'));
+      console.log(this.myReviews);
 
       localStorage.removeItem('my_reviews');
   }
@@ -46,11 +47,11 @@ export class MyReviewPage {
     return this.httpService.builder('user/reviews')
       .list()
       .then((res) => {
-          for (let i = 0; i < res.reviews.length; i++) {
-              res.reviews[i].created_at = new Date(res.reviews[i].created_at);
+          for (let i = 0; i < res.data.reviews.length; i++) {
+              res.data.reviews[i].created_at = new Date(res.data.reviews[i].created_at);
           }
 
-          localStorage['my_reviews'] = JSON.stringify(res.reviews); //res.data.reviews
+          localStorage['my_reviews'] = JSON.stringify(res.data.reviews); //res.data.reviews
       });
   }
 
